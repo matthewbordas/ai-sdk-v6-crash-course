@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "ai-hero-cli exercise",
-    "exercise": "ai-hero-cli exercise",
+    "exercise": "ai-hero-cli exercise $(cat .lesson.txt)",
+    "format:check": "prettier --log-level log --check .",
+    "format:fix": "prettier --log-level error --write .",
     "prepare": "husky"
   },
   "keywords": [],

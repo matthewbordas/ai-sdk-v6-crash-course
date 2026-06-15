@@ -2,7 +2,9 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import type { MyAgentUIMessage } from '../api/chat.ts';
 
-export const Wrapper = (props: { children: React.ReactNode }) => {
+export const Wrapper = (props: {
+  children: React.ReactNode;
+}) => {
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
       {props.children}

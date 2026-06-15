@@ -4,6 +4,7 @@
 **Setup: client-server with frontend partially built**
 
 ## Scenario
+
 User wants to preview an email before sending. Approve or reject the send.
 
 ## Backend: needsApproval on tool
@@ -30,7 +31,10 @@ export const sendEmailTool = tool({
 ## Frontend: approval UI component
 
 ```tsx
-export function EmailToolView({ invocation, addToolApprovalResponse }) {
+export function EmailToolView({
+  invocation,
+  addToolApprovalResponse,
+}) {
   if (invocation.state === 'approval-requested') {
     return (
       <div>
@@ -75,11 +79,13 @@ import { useChat } from '@ai-sdk/react';
 import { lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai';
 
 const { messages, addToolApprovalResponse } = useChat({
-  sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses,
+  sendAutomaticallyWhen:
+    lastAssistantMessageIsCompleteWithApprovalResponses,
 });
 ```
 
 ## Problem setup
+
 - Frontend component partially built (shows email preview)
 - User needs to:
   1. Add `needsApproval: true` to tool
@@ -87,4 +93,5 @@ const { messages, addToolApprovalResponse } = useChat({
   3. Wire up approve/reject buttons
 
 ## Open Questions
+
 - When does reject reason come in? (need to investigate API)

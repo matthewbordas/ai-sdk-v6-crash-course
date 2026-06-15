@@ -13,7 +13,7 @@ Okay, I need to explain a complex TypeScript code snippet to a beginner, using t
 Let's begin!
 </thinking>
 
-```markdown
+````markdown
 ## Understanding the Code: A Beginner's Guide
 
 This code uses advanced TypeScript techniques to create a type that represents different events. Let's break it down step by step.
@@ -28,6 +28,7 @@ type MyObjectType = {
   age: number;
 };
 ```
+````
 
 This code defines a type called `MyObjectType`. This type describes an object that has two properties: `name` (which is a string) and `age` (which is a number).
 
@@ -108,7 +109,7 @@ type Example = {
 }[keyof SomeObject];
 ```
 
-1.  **Mapped Type:**  `{[K in keyof SomeObject]: { key: K; }}` creates a mapped type.  For each key (`"a"` and `"b"`), it creates an object with a `key` property.
+1.  **Mapped Type:** `{[K in keyof SomeObject]: { key: K; }}` creates a mapped type. For each key (`"a"` and `"b"`), it creates an object with a `key` property.
 2.  **Immediate Indexing:** `[keyof SomeObject]` immediately indexes into the mapped type. `keyof SomeObject` gives `"a" | "b"`. This effectively transforms the mapped type into a union of the object types.
 
 The resulting `Example` type would be:
@@ -134,7 +135,7 @@ Here's how it works:
 
 ### `EventMap` Type
 
-The `EventMap` type is a key-value object that defines the structure for different events in your application.  The keys are the event names (e.g., `"login"`, `"logout"`, `"updateUsername"`), and the values are objects that describe the data associated with each event.
+The `EventMap` type is a key-value object that defines the structure for different events in your application. The keys are the event names (e.g., `"login"`, `"logout"`, `"updateUsername"`), and the values are objects that describe the data associated with each event.
 
 ```typescript
 type EventMap = {
@@ -151,9 +152,9 @@ type EventMap = {
 
 For example:
 
-*   The `"login"` event has a `username` and `password` property.
-*   The `"logout"` event has no associated data (an empty object `{}`).
-*   The `"updateUsername"` event has a `newUsername` property.
+- The `"login"` event has a `username` and `password` property.
+- The `"logout"` event has no associated data (an empty object `{}`).
+- The `"updateUsername"` event has a `newUsername` property.
 
 ### `EventAsDiscriminatedUnion` Type
 
@@ -171,13 +172,16 @@ export type EventAsDiscriminatedUnion = {
 
 Let's break it down:
 
-1.  **`[K in keyof EventMap]`**:  This is the IIMT part. We're iterating over the keys of `EventMap` (i.e., "login", "logout", "updateUsername").
-2.  **`{ type: K; }`**:  For each key `K` (the event name), we create an object with a `type` property. The `type` property's value is the event name itself. This will be used as the discriminator for the union.
-3.  **`& EventMap[K]`**:  We use the `&` operator to combine this object with the corresponding event data from `EventMap`.  `EventMap[K]` gives us the specific event data (e.g., for "login", it would be `{ username: string; password: string; }`).
-4.  **`Prettify< ... >`**:  We use `Prettify` to make the resulting type more readable.
-5.  **`[keyof EventMap]`**:  Finally, we index into the mapped type with `keyof EventMap`.  This takes the union of the types created by each key in `EventMap`.
+1.  **`[K in keyof EventMap]`**: This is the IIMT part. We're iterating over the keys of `EventMap` (i.e., "login", "logout", "updateUsername").
+2.  **`{ type: K; }`**: For each key `K` (the event name), we create an object with a `type` property. The `type` property's value is the event name itself. This will be used as the discriminator for the union.
+3.  **`& EventMap[K]`**: We use the `&` operator to combine this object with the corresponding event data from `EventMap`. `EventMap[K]` gives us the specific event data (e.g., for "login", it would be `{ username: string; password: string; }`).
+4.  **`Prettify< ... >`**: We use `Prettify` to make the resulting type more readable.
+5.  **`[keyof EventMap]`**: Finally, we index into the mapped type with `keyof EventMap`. This takes the union of the types created by each key in `EventMap`.
 
 **In essence:**
 
 This code defines a discriminated union of event types. Each event type has a `type` property (e.g., `"login"`) that identifies the event, along with any specific event data. The use of the IIMT pattern ensures a concise and readable way to define and use the events within your application.
+
+```
+
 ```

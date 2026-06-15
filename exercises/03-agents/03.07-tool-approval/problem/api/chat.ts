@@ -13,7 +13,9 @@ const tools = {
   sendEmail: tool({
     description: 'Send an email to a recipient',
     inputSchema: z.object({
-      to: z.string().describe('The email address of the recipient'),
+      to: z
+        .string()
+        .describe('The email address of the recipient'),
       subject: z.string().describe('The subject of the email'),
       body: z.string().describe('The body of the email'),
     }),

@@ -6,7 +6,9 @@ import './tailwind.css';
 import type { MyAgentUIMessage } from '../api/chat.ts';
 
 const App = () => {
-  const { messages, sendMessage } = useChat<MyAgentUIMessage>({});
+  const { messages, sendMessage } = useChat<MyAgentUIMessage>(
+    {},
+  );
 
   const [input, setInput] = useState(
     'Create a todo.md file with three items for today.',
