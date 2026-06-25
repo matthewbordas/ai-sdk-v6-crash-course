@@ -1,12 +1,7 @@
 import type { UIDataTypes, UIMessagePart, UITools } from 'ai';
 import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import {
-  FileIcon,
-  FileInput,
-  Upload,
-  XIcon,
-} from 'lucide-react';
+import { Upload, XIcon } from 'lucide-react';
 
 export const Wrapper = (props: {
   children: React.ReactNode;
@@ -53,18 +48,19 @@ export const ChatInput = ({
   onInputChange: (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => void;
-  onFileSelect: (file: File | null) => void;
+  // onFileSelect: (e: React.ChangeEvent<HTMLInputElement> | null) => void;
+  onFileSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
   selectedFile: File | null;
   onSubmit: (e: React.FormEvent) => void;
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = e.target.files?.[0] || null;
-    onFileSelect(file);
-  };
+  // const handleFileSelect = (
+  //   e: React.ChangeEvent<HTMLInputElement>,
+  // ) => {
+  //   const file = e.target.files?.[0] || null;
+  //   onFileSelect(file);
+  // };
 
   const handleFileButtonClick = () => {
     fileInputRef.current?.click();
@@ -96,7 +92,7 @@ export const ChatInput = ({
           ref={fileInputRef}
           type="file"
           name="file"
-          onChange={handleFileSelect}
+          onChange={onFileSelect}
           className="hidden"
         />
       </div>
@@ -105,7 +101,7 @@ export const ChatInput = ({
           <div className="text-xs text-gray-400 bg-gray-700 py-1 px-2 flex-shrink-0 flex gap-2 items-center rounded -ml-1">
             <button
               type="button"
-              onClick={() => onFileSelect(null)}
+              onClick={() => onFileSelect()}
               className="text-gray-400 hover:text-gray-300"
             >
               <XIcon className="size-4" />

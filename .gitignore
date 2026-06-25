@@ -1,12 +1,8 @@
+# Node dependencies
 node_modules
-tsconfig.temp.json
-dist
-*.tsbuildinfo
-.vscode/*.code-snippets
+
+# Environment config
 .env
-*.local.*
-.next
-next-env.d.ts
-.DS_Store
-/data
-.devtools
+
+# Misc
+tmp

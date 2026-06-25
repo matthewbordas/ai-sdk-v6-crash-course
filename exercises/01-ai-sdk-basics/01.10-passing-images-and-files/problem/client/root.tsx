@@ -7,9 +7,7 @@ import './tailwind.css';
 const App = () => {
   const { messages, sendMessage } = useChat({});
 
-  const [input, setInput] = useState(
-    'Could you describe this image?',
-  );
+  const [input, setInput] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(
     null,
   );
@@ -25,20 +23,42 @@ const App = () => {
       ))}
       <ChatInput
         input={input}
-        onInputChange={(e) => setInput(e.target.value)}
-        onFileSelect={(file) => setSelectedFile(file)}
+        onInputChange={(e) => {
+          console.log(`onInputChange()`);
+
+          setInput(e.target.value);
+        }}
+        onFileSelect={(e) => {
+          console.log(`onFileSelect()`);
+
+          const file = e.target.files?.[0] || null;
+          setSelectedFile(file);
+        }}
         selectedFile={selectedFile}
         onSubmit={async (e) => {
+          console.log(`onSubmit()`);
+
           e.preventDefault();
 
-          const formData = new FormData(
-            e.target as HTMLFormElement,
-          );
-          const file = formData.get('file') as File | null;
+          // const formData = new FormData(
+          //   e.target as HTMLFormElement,
+          // );
+          // const file = formData.get('file') as File | null;
+
+          // console.log(
+          //   `file === selectedFile:`,
+          //   file === selectedFile,
+          // );
 
           // TODO: figure out how to pass the file
           // _as well as the text_ to the
           // /api/chat route!
+          if (!selectedFile) {
+            console.error(
+              `onSubmit Error: selectedFile is null`,
+            );
+            return;
+          }
 
           // NOTE: You have a helpful function below
           // called fileToDataURL that you can use to
