@@ -8,7 +8,7 @@ You need to modify the form submission handler to capture the uploaded file and 
 
 ### Convert the File to a Data URL
 
-- [ ] Look at the `fileToDataURL` helper function already provided in your code
+- [x] Look at the `fileToDataURL` helper function already provided in your code
 
 This function converts a `File` object from the form into a string that the [AI SDK](https://ai-sdk.dev/docs/introduction) can send over the network.
 
@@ -25,7 +25,7 @@ const fileToDataURL = (file: File) => {
 
 ### Update the Form Submission Handler
 
-- [ ] Modify the `onSubmit` callback in the `ChatInput` component
+- [x] Modify the `onSubmit` callback in the `ChatInput` component
 
 Instead of passing only `text` to `sendMessage()`, you need to pass a `parts` array that includes both a text part and an optional file part.
 
@@ -63,11 +63,11 @@ Look at the [message parts documentation](https://ai-sdk.dev/docs/reference/ai-s
 
 ### Handle the Optional File Part
 
-- [ ] Create a file part object only if a file exists
+- [x] Create a file part object only if a file exists
 
 Use the `fileToDataURL` function to convert the file to a data URL string. Include the file's `mediaType` property so the LLM knows what kind of file it is.
 
-- [ ] Update the `sendMessage()` call to use a `parts` array
+- [x] Update the `sendMessage()` call to use a `parts` array
 
 The `parts` array should always include a text part with the user's input. If a file was selected, add a file part to the array as well.
 
@@ -75,20 +75,20 @@ Look at the solution code to see what the `FileUIPart` type looks like.
 
 ### Test Your Implementation
 
-- [ ] Run the development server with `pnpm run dev`
+- [x] Run the development server with `pnpm run dev`
 
 Open http://localhost:3000 in your browser.
 
-- [ ] Click the Upload File button and select the `image.png` file from the problem folder
+- [x] Click the Upload File button and select the `image.png` file from the problem folder
 
 This is an image of Lake Bled in Slovenia.
 
-- [ ] Type "Could you describe this image?" in the chat input
+- [x] Type "Could you describe this image?" in the chat input
 
-- [ ] Submit the form and check that the LLM successfully analyzes the image
+- [x] Submit the form and check that the LLM successfully analyzes the image
 
 The model should describe what it sees in the image rather than failing silently.
 
-- [ ] Make sure you're using a model that supports image analysis
+- [x] Make sure you're using a model that supports image analysis
 
 [Gemini 2.5 Flash](https://ai.google.dev/gemini-api/docs/models) has this capability built in.
